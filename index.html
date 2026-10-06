@@ -2,17 +2,51 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1,
+               maximum-scale=5,
+               minimum-scale=1,
+               user-scalable=yes,
+               viewport-fit=cover">
+
 <title>LLAMA CAFE</title>
 
 <style>
-/* Luxury Latin typography. Peyda remains the Persian UI font; English and
-   Latin numerals use a high-contrast editorial serif. */
 @import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&display=swap");
-@font-face{font-family:Peyda;src:url("assets/fonts/PEYDA-REGULAR.TTF") format("truetype");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:Peyda;src:url("assets/fonts/PEYDA-MEDIUM.TTF") format("truetype");font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:Peyda;src:url("assets/fonts/PEYDA-SEMIBOLD.TTF") format("truetype");font-weight:600;font-style:normal;font-display:swap}
-@font-face{font-family:Peyda;src:url("assets/fonts/PEYDA-BOLD.TTF") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+
+@font-face{
+  font-family:Peyda;
+  src:url("assets/fonts/PEYDA-REGULAR.TTF") format("truetype");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap
+}
+
+@font-face{
+  font-family:Peyda;
+  src:url("assets/fonts/PEYDA-MEDIUM.TTF") format("truetype");
+  font-weight:500;
+  font-style:normal;
+  font-display:swap
+}
+
+@font-face{
+  font-family:Peyda;
+  src:url("assets/fonts/PEYDA-SEMIBOLD.TTF") format("truetype");
+  font-weight:600;
+  font-style:normal;
+  font-display:swap
+}
+
+@font-face{
+  font-family:Peyda;
+  src:url("assets/fonts/PEYDA-BOLD.TTF") format("truetype");
+  font-weight:700;
+  font-style:normal;
+  font-display:swap
+}
 
 :root{
   --paper:#f4f5ed;
@@ -22,14 +56,18 @@
   --line:#aeb6aa;
 }
 
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
-html,body{
+html,
+body{
   width:100%;
-  height:100%;
+  min-width:100%;
+  min-height:100%;
   margin:0;
   padding:0;
-  overflow:hidden;
   background:#dfe2da;
 }
 
@@ -38,13 +76,16 @@ body{
   color:var(--ink);
 }
 
-/* The digital menu always occupies exactly one viewport.
-   Nothing becomes a vertically scrolling page on mobile. */
+button{
+  font:inherit;
+}
+
 .app{
   position:fixed;
   inset:0;
-  width:100vw;
+  width:100%;
   height:100dvh;
+  min-height:100svh;
   overflow:hidden;
   background:var(--paper);
 }
@@ -54,15 +95,24 @@ body{
   inset:0;
   width:100%;
   height:100%;
+  min-height:100dvh;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   overflow:hidden;
+
   opacity:0;
   visibility:hidden;
   pointer-events:none;
+
   transform:scale(.985);
-  transition:opacity .32s ease,transform .32s ease,visibility .32s;
+
+  transition:
+    opacity .32s ease,
+    transform .32s ease,
+    visibility .32s;
 }
 
 .screen.active{
@@ -72,47 +122,111 @@ body{
   transform:scale(1);
 }
 
-/* Portrait printed-menu proportion from the supplied reference. */
 .page{
   position:relative;
-  width:min(100vw, calc(100dvh * .754));
-  height:min(100dvh, calc(100vw / .754));
-  aspect-ratio:635 / 841;
+
+  width:100%;
+  height:100%;
+
   overflow:hidden;
+
   background:
-    radial-gradient(ellipse at 50% 38%,rgba(255,255,255,.42),transparent 58%),
+    radial-gradient(
+      ellipse at 50% 38%,
+      rgba(255,255,255,.42),
+      transparent 58%
+    ),
     var(--paper);
+
   box-shadow:0 5px 28px rgba(22,39,31,.18);
 }
 
 .page:before{
   content:"";
+
   position:absolute;
   inset:2.1%;
+
   border:1px solid rgba(38,72,59,.72);
+
   pointer-events:none;
   z-index:20;
 }
 
 .page:after{
   content:"";
+
   position:absolute;
   inset:3.9%;
-  border:0;
+
   pointer-events:none;
   z-index:20;
 }
 
-/* Fine ornamental corners */
-.corner{position:absolute;width:6.2%;height:4.2%;z-index:21;opacity:.95}
-.corner:before,.corner:after{content:"";position:absolute;background:var(--gold)}
-.corner.tl{top:3.8%;left:4.1%}.corner.tr{top:3.8%;right:4.1%;transform:scaleX(-1)}
-.corner.bl{bottom:3.8%;left:4.1%;transform:scaleY(-1)}.corner.br{bottom:3.8%;right:4.1%;transform:scale(-1)}
-.corner:before{width:2px;height:100%;left:0;top:0}
-.corner:after{height:2px;width:100%;left:0;top:0}
-.corner i{position:absolute;left:7px;top:7px;width:72%;height:72%;border-left:1px solid var(--gold);border-top:1px solid var(--gold)}
+.corner{
+  position:absolute;
+  width:6.2%;
+  height:4.2%;
+  z-index:21;
+  opacity:.95;
+}
 
-.cover-inner,.menu-inner{
+.corner:before,
+.corner:after{
+  content:"";
+  position:absolute;
+  background:var(--gold);
+}
+
+.corner.tl{
+  top:3.8%;
+  left:4.1%;
+}
+
+.corner.tr{
+  top:3.8%;
+  right:4.1%;
+  transform:scaleX(-1);
+}
+
+.corner.bl{
+  bottom:3.8%;
+  left:4.1%;
+  transform:scaleY(-1);
+}
+
+.corner.br{
+  bottom:3.8%;
+  right:4.1%;
+  transform:scale(-1);
+}
+
+.corner:before{
+  width:2px;
+  height:100%;
+  left:0;
+  top:0;
+}
+
+.corner:after{
+  height:2px;
+  width:100%;
+  left:0;
+  top:0;
+}
+
+.corner i{
+  position:absolute;
+  left:7px;
+  top:7px;
+  width:72%;
+  height:72%;
+  border-left:1px solid var(--gold);
+  border-top:1px solid var(--gold);
+}
+
+.cover-inner,
+.menu-inner{
   position:absolute;
   inset:7.2% 8.4% 7.2%;
 }
@@ -122,9 +236,10 @@ body{
   top:9.2%;
   left:50%;
   transform:translateX(-50%);
+
   width:52%;
   height:29%;
-  max-height:none;
+
   object-fit:contain;
 }
 
@@ -132,339 +247,736 @@ body{
   position:absolute;
   top:31.5%;
   left:0;
+
   width:100%;
+
   text-align:center;
-  font-family:"Bodoni Moda","Didot","Bodoni 72","Times New Roman",serif;
+
+  font-family:
+    "Bodoni Moda",
+    "Didot",
+    "Bodoni 72",
+    "Times New Roman",
+    serif;
+
   font-size:clamp(20px,5.5vw,48px);
   letter-spacing:.22em;
   padding-left:.22em;
+
   font-weight:500;
   color:#173d31;
 }
 
 .gold-rule{
   position:absolute;
+
   left:50%;
   transform:translateX(-50%);
+
   top:37.9%;
+
   width:23%;
   height:14px;
 }
-.gold-rule:before,.gold-rule:after{
+
+.gold-rule:before,
+.gold-rule:after{
   content:"";
+
   position:absolute;
   top:50%;
+
   width:calc(50% - 11px);
   height:1px;
+
   background:var(--gold);
 }
-.gold-rule:before{left:0}
-.gold-rule:after{right:0}
+
+.gold-rule:before{
+  left:0;
+}
+
+.gold-rule:after{
+  right:0;
+}
+
 .diamond{
   position:absolute;
+
   left:50%;
   top:50%;
-  width:7px;height:7px;
-  margin:0;
+
+  width:7px;
+  height:7px;
+
   background:var(--gold);
+
   transform:translate(-50%,-50%) rotate(45deg);
 }
 
 .category-row{
   position:absolute;
+
   left:9%;
   right:9%;
   top:43.5%;
   height:36%;
+
   display:flex;
   flex-direction:row;
+
   direction:ltr;
+
   gap:7%;
 }
 
 .category{
   position:relative;
+
   width:46.5%;
   height:100%;
+
   border:1px solid var(--ink);
+
   background:rgba(247,248,239,.35);
+
   cursor:pointer;
-  transition:transform .2s ease,box-shadow .2s ease;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+
   overflow:hidden;
 }
-.category.cafe{border-color:var(--gold)}
-.category:hover,.category:active{
-  transform:translateY(-2px);
-  box-shadow:0 7px 18px rgba(29,55,45,.10);
+
+.category.cafe{
+  border-color:var(--gold);
 }
+
+.category:hover,
+.category:active{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 7px 18px rgba(29,55,45,.10);
+}
+
 .category:before{
   content:"";
+
   position:absolute;
   inset:2.2%;
+
   border:1px solid currentColor;
+
   opacity:.8;
 }
+
 .category .art{
   position:absolute;
+
   left:50%;
   top:14%;
+
   transform:translateX(-50%);
+
   width:42%;
   height:35%;
+
   object-fit:contain;
 }
+
 .category .en{
   position:absolute;
-  left:0;right:0;
+
+  left:0;
+  right:0;
   top:51%;
+
   text-align:center;
+
   direction:ltr;
-  font-family:"Bodoni Moda","Didot","Bodoni 72","Times New Roman",serif;
+
+  font-family:
+    "Bodoni Moda",
+    "Didot",
+    "Bodoni 72",
+    "Times New Roman",
+    serif;
+
   letter-spacing:.12em;
+
   font-size:clamp(12px,2.65vw,23px);
+
   color:#193e32;
 }
+
 .category .fa{
   position:absolute;
-  left:0;right:0;
+
+  left:0;
+  right:0;
   top:59%;
+
   text-align:center;
+
   font-size:clamp(10px,2vw,17px);
+
   font-weight:400;
+
   color:#536058;
 }
+
 .category .mini-rule{
   position:absolute;
+
   left:50%;
   transform:translateX(-50%);
+
   bottom:11%;
+
   width:38%;
   height:10px;
 }
-.mini-rule:before,.mini-rule:after{
+
+.mini-rule:before,
+.mini-rule:after{
   content:"";
+
   position:absolute;
+
   top:50%;
+
   width:calc(50% - 9px);
   height:1px;
+
   background:var(--gold);
 }
-.mini-rule:before{left:0}
-.mini-rule:after{right:0}
+
+.mini-rule:before{
+  left:0;
+}
+
+.mini-rule:after{
+  right:0;
+}
+
 .mini-rule .diamond{
-  width:6px;height:6px;
-  left:50%;top:50%;
-  margin:0;
+  width:6px;
+  height:6px;
+
+  left:50%;
+  top:50%;
+
   transform:translate(-50%,-50%) rotate(45deg);
 }
 
 .cover-footer{
   position:absolute;
+
   bottom:7.5%;
-  left:0;right:0;
+
+  left:0;
+  right:0;
+
   text-align:center;
-  font-family:"Bodoni Moda","Didot","Bodoni 72","Times New Roman",serif;
+
+  font-family:
+    "Bodoni Moda",
+    "Didot",
+    "Bodoni 72",
+    "Times New Roman",
+    serif;
+
   letter-spacing:.22em;
+
   direction:ltr;
+
   font-size:clamp(8px,1.55vw,14px);
+
   color:#5d6a61;
 }
 
-/* subtle botanical silhouettes */
 .leaf{
   position:absolute;
+
   width:35%;
   height:23%;
+
   opacity:.13;
+
   pointer-events:none;
+
   background:
-    radial-gradient(ellipse at 50% 50%,#8b9c88 0 12%,transparent 13%),
-    repeating-linear-gradient(125deg,transparent 0 12px,#8b9c88 13px 15px,transparent 16px 25px);
+    radial-gradient(
+      ellipse at 50% 50%,
+      #8b9c88 0 12%,
+      transparent 13%
+    ),
+    repeating-linear-gradient(
+      125deg,
+      transparent 0 12px,
+      #8b9c88 13px 15px,
+      transparent 16px 25px
+    );
+
   filter:blur(.2px);
 }
-.leaf.left{left:-7%;bottom:-1%;transform:rotate(-20deg)}
-.leaf.right{right:-7%;bottom:-1%;transform:scaleX(-1) rotate(-20deg)}
 
-/* ---------- CAFE MENU ---------- */
-.menu-inner{inset:6.8% 9.5% 6.2%}
+.leaf.left{
+  left:-7%;
+  bottom:-1%;
+  transform:rotate(-20deg);
+}
+
+.leaf.right{
+  right:-7%;
+  bottom:-1%;
+  transform:scaleX(-1) rotate(-20deg);
+}
+
+.menu-inner{
+  inset:6.8% 9.5% 6.2%;
+}
 
 .menu-logo{
   position:absolute;
+
   right:1.5%;
   top:0;
+
   width:17%;
   height:12%;
+
   object-fit:contain;
 }
 
 .menu-title{
   position:absolute;
+
   left:1.5%;
   top:5.7%;
+
   direction:ltr;
-  font-family:"Bodoni Moda","Didot","Bodoni 72","Times New Roman",serif;
+
+  font-family:
+    "Bodoni Moda",
+    "Didot",
+    "Bodoni 72",
+    "Times New Roman",
+    serif;
+
   font-size:clamp(15px,3.5vw,29px);
+
   letter-spacing:.25em;
+
   color:#173d31;
 }
 
 .header-rule{
   position:absolute;
+
   left:0;
   right:0;
+
   top:12.6%;
+
   height:12px;
 }
+
 .header-rule:before{
-  content:"";position:absolute;left:0;right:0;top:5px;height:1px;background:#aab3a7;
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  top:5px;
+
+  height:1px;
+
+  background:#aab3a7;
 }
+
 .header-rule .diamond{
   position:absolute;
+
   left:50%;
   top:50%;
-  width:7px;height:7px;
-  margin:0;
+
+  width:7px;
+  height:7px;
+
   transform:translate(-50%,-50%) rotate(45deg);
 }
 
 .menu-columns{
   position:absolute;
+
   top:17.3%;
+
   left:0;
   right:0;
+
   bottom:5%;
+
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   direction:ltr;
+
   column-gap:8%;
 }
 
-.menu-col{direction:rtl;position:relative}
-.menu-col.right{border-left:1px solid #aeb5ab;padding-left:7%}
-.menu-col.left{padding-right:0}
+.menu-col{
+  direction:rtl;
+  position:relative;
+}
+
+.menu-col.right{
+  border-left:1px solid #aeb5ab;
+  padding-left:7%;
+}
+
+.menu-col.left{
+  padding-right:0;
+}
 
 .section{
   position:relative;
+
   margin:0 0 4.8% 0;
 }
+
 .section-title{
   direction:ltr;
+
   text-align:left;
-  font-family:"Bodoni Moda","Didot","Bodoni 72","Times New Roman",serif;
+
+  font-family:
+    "Bodoni Moda",
+    "Didot",
+    "Bodoni 72",
+    "Times New Roman",
+    serif;
+
   font-weight:600;
+
   font-size:clamp(13px,3vw,24px);
+
   letter-spacing:.01em;
+
   color:#173d31;
+
   white-space:nowrap;
 }
+
 .section-title .num{
   display:inline-block;
+
   font-size:.72em;
+
   margin-right:12px;
+
   color:#6f725c;
 }
+
 .section-sub{
   margin-top:-1px;
   margin-right:1px;
+
   text-align:left;
+
   font-size:clamp(8px,1.65vw,14px);
+
   color:#69726a;
 }
+
 .items{
   margin-top:3.5%;
 }
+
 .item{
   display:grid;
+
   grid-template-columns:12% 1fr 47%;
+
   align-items:center;
+
   direction:ltr;
-  min-height:8.0%;
+
+  min-height:8%;
+
   margin-bottom:1.5%;
 }
+
 .item .price{
   direction:ltr;
+
   text-align:left;
-  font-family:"Bodoni Moda","Didot","Bodoni 72","Times New Roman",serif;
+
+  font-family:
+    "Bodoni Moda",
+    "Didot",
+    "Bodoni 72",
+    "Times New Roman",
+    serif;
+
   font-size:clamp(8px,1.7vw,14px);
+
   color:#273d35;
 }
+
 .item .dots{
   height:1px;
+
   margin:0 7px;
-  background:linear-gradient(to right,#c8cdc4 0,#c8cdc4 50%,transparent 50%,transparent 100%);
+
+  background:
+    linear-gradient(
+      to right,
+      #c8cdc4 0,
+      #c8cdc4 50%,
+      transparent 50%,
+      transparent 100%
+    );
+
   background-size:4px 1px;
 }
+
 .item .name{
   direction:rtl;
+
   text-align:right;
+
   font-size:clamp(8px,1.75vw,15px);
+
   color:#4b554f;
+
   white-space:nowrap;
 }
 
-.back{display:none}
+.back{
+  display:none;
+}
 
 .menu-footer{
   position:absolute;
+
   left:50%;
+
   transform:translateX(-50%);
+
   bottom:1.2%;
+
   white-space:nowrap;
+
   direction:ltr;
-  font-family:"Bodoni Moda","Didot","Bodoni 72","Times New Roman",serif;
+
+  font-family:
+    "Bodoni Moda",
+    "Didot",
+    "Bodoni 72",
+    "Times New Roman",
+    serif;
+
   font-size:clamp(8px,1.5vw,13px);
+
   letter-spacing:.14em;
+
   color:#647068;
 }
-.menu-footer:before,.menu-footer:after{
-  content:"";display:inline-block;width:36px;height:1px;background:#aab1a6;
-  vertical-align:middle;margin:0 12px;
+
+.menu-footer:before,
+.menu-footer:after{
+  content:"";
+
+  display:inline-block;
+
+  width:36px;
+  height:1px;
+
+  background:#aab1a6;
+
+  vertical-align:middle;
+
+  margin:0 12px;
 }
 
-/* Prevent any page scrolling even when fonts/images load. */
 @media (max-width:520px){
-  html,body,.app,.screen{
+
+  html,
+  body{
+    width:100%;
+    min-width:100%;
+    height:100%;
+    min-height:100%;
+  }
+
+  .app{
     width:100%;
     height:100dvh;
-    min-height:100dvh;
+    min-height:100svh;
   }
 
   .screen{
-    align-items:flex-start;
-    justify-content:center;
+    width:100%;
+    height:100dvh;
+    min-height:100svh;
+
+    align-items:stretch;
+    justify-content:stretch;
+
+    overflow:hidden;
   }
 
-  /* No 8px inset and no centering gap at the top: the menu frame starts
-     exactly at the viewport's top edge. */
   .page{
-    width:100vw;
-    height:calc(100vw / .754);
+    width:100%;
+    height:100dvh;
+    min-height:100svh;
+
     max-width:none;
     max-height:none;
-    flex:0 0 auto;
+
+    flex:1 1 auto;
+
+    box-shadow:none;
   }
 
-  .category-row{gap:6%;left:8%;right:8%}
-  .category{width:47%}
-  .menu-columns{column-gap:7%}
+  .cover-inner,
+  .menu-inner{
+    width:auto;
+  }
+
+  .category-row{
+    left:8%;
+    right:8%;
+
+    gap:6%;
+
+    height:36%;
+  }
+
+  .category{
+    width:47%;
+  }
+
+  .category .art{
+    width:44%;
+    height:34%;
+  }
+
+  .category .en{
+    font-size:clamp(11px,3.1vw,18px);
+  }
+
+  .category .fa{
+    font-size:clamp(9px,2.5vw,15px);
+  }
+
+  .menu-columns{
+    column-gap:7%;
+  }
+
+  .menu-col.right{
+    padding-left:6%;
+  }
+
+  .section{
+    margin-bottom:5%;
+  }
+
+  .section-title{
+    font-size:clamp(13px,3.6vw,21px);
+  }
+
+  .section-sub{
+    font-size:clamp(7px,2vw,12px);
+  }
+
+  .item{
+    grid-template-columns:18% 1fr 43%;
+    min-height:7.5%;
+  }
+
+  .item .price{
+    font-size:clamp(8px,2.1vw,13px);
+  }
+
+  .item .name{
+    font-size:clamp(8px,2.1vw,13px);
+  }
+
+  .menu-title{
+    font-size:clamp(15px,4vw,24px);
+  }
+}
+
+@media (max-width:380px){
+
+  .menu-inner{
+    inset:6.5% 7.5% 5.5%;
+  }
+
+  .menu-columns{
+    column-gap:5%;
+  }
+
+  .menu-col.right{
+    padding-left:5%;
+  }
+
+  .item{
+    grid-template-columns:20% 1fr 42%;
+  }
+
+  .item .price{
+    font-size:8px;
+  }
+
+  .item .name{
+    font-size:8px;
+  }
+
+  .section-title{
+    font-size:13px;
+  }
 }
 
 @media (orientation:landscape) and (max-height:620px){
-  .screen{align-items:flex-start}
-  .page{height:100dvh;width:calc(100dvh * .754);max-width:none}
+
+  .screen{
+    align-items:stretch;
+    justify-content:stretch;
+  }
+
+  .page{
+    width:100%;
+    height:100dvh;
+  }
 }
 
-/* Accessibility */
-button{font:inherit}
-button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+button:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:3px;
+}
 </style>
 </head>
 
 <body>
+
 <div class="app">
 
-  <section id="cover" class="screen active" aria-label="صفحه اصلی منو">
+  <section
+    id="cover"
+    class="screen active"
+    aria-label="صفحه اصلی منو"
+  >
+
     <div class="page">
+
       <div class="corner tl"><i></i></div>
       <div class="corner tr"><i></i></div>
       <div class="corner bl"><i></i></div>
@@ -473,35 +985,73 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
       <div class="leaf left"></div>
       <div class="leaf right"></div>
 
-      <img class="cover-logo asset-image"
-           data-assets="assets/images/logo.png"
-           alt="LLAMA">
-
-
+      <img
+        class="cover-logo asset-image"
+        data-assets="assets/images/logo.png"
+        alt="LLAMA"
+      >
 
       <div class="category-row">
-        <button class="category" type="button" onclick="openScreen('fastfood')">
-          <img class="art asset-image"
-               data-assets="assets/images/fastfood.svg"
-               alt="">
+
+        <button
+          class="category"
+          type="button"
+          onclick="openScreen('fastfood')"
+        >
+
+          <img
+            class="art asset-image"
+            data-assets="assets/images/fastfood.svg"
+            alt=""
+          >
+
           <div class="en">FAST FOOD</div>
-          <div class="mini-rule"><span></span><i class="diamond"></i><span></span></div>
+
+          <div class="mini-rule">
+            <span></span>
+            <i class="diamond"></i>
+            <span></span>
+          </div>
+
         </button>
 
-        <button class="category cafe" type="button" onclick="openScreen('cafe')">
-          <img class="art asset-image"
-               data-assets="assets/images/cafe.svg"
-               alt="">
+        <button
+          class="category cafe"
+          type="button"
+          onclick="openScreen('cafe')"
+        >
+
+          <img
+            class="art asset-image"
+            data-assets="assets/images/cafe.svg"
+            alt=""
+          >
+
           <div class="en">CAFE</div>
-          <div class="mini-rule"><span></span><i class="diamond"></i><span></span></div>
+
+          <div class="mini-rule">
+            <span></span>
+            <i class="diamond"></i>
+            <span></span>
+          </div>
+
         </button>
+
       </div>
 
     </div>
+
   </section>
 
-  <section id="cafe" class="screen" aria-label="منوی کافه">
+
+  <section
+    id="cafe"
+    class="screen"
+    aria-label="منوی کافه"
+  >
+
     <div class="page">
+
       <div class="corner tl"><i></i></div>
       <div class="corner tr"><i></i></div>
       <div class="corner bl"><i></i></div>
@@ -509,138 +1059,398 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
       <div class="menu-inner">
 
-        <img class="menu-logo asset-image"
-             data-assets="assets/images/logo.png|assets/images/logo.webp|assets/images/logo.jpg|assets/images/llama-logo.png|assets/images/llama.png"
-             alt="LLAMA">
+        <img
+          class="menu-logo asset-image"
+          data-assets="assets/images/logo.png|assets/images/logo.webp|assets/images/logo.jpg|assets/images/llama-logo.png|assets/images/llama.png"
+          alt="LLAMA"
+        >
 
-        <div class="menu-title">MENU</div>
-        <div class="header-rule"></div>
+        <div class="menu-title">
+          MENU
+        </div>
+
+        <div class="header-rule">
+          <i class="diamond"></i>
+        </div>
 
         <div class="menu-columns">
 
           <div class="menu-col left">
-            <section class="section">
-              <div class="section-title">COFFEE</div>
-              <div class="items">
-                <div class="item"><span class="price">150</span><i class="dots"></i><span class="name">اسپرسو</span></div>
-                <div class="item"><span class="price">150</span><i class="dots"></i><span class="name">امریکانو</span></div>
-                <div class="item"><span class="price">180</span><i class="dots"></i><span class="name">کاپوچینو</span></div>
-                <div class="item"><span class="price">210</span><i class="dots"></i><span class="name">لاته</span></div>
-                <div class="item"><span class="price">240</span><i class="dots"></i><span class="name">کارامل ماکیاتو</span></div>
-                <div class="item"><span class="price">240</span><i class="dots"></i><span class="name">موکا</span></div>
-                <div class="item"><span class="price">230</span><i class="dots"></i><span class="name">لاته فندق</span></div>
-              </div>
-            </section>
 
             <section class="section">
-              <div class="section-title">ICE COFFEE</div>
-              <div class="items">
-                <div class="item"><span class="price">160</span><i class="dots"></i><span class="name">آیس امریکانو</span></div>
-                <div class="item"><span class="price">220</span><i class="dots"></i><span class="name">آیس لاته</span></div>
-                <div class="item"><span class="price">250</span><i class="dots"></i><span class="name">آیس کارامل</span></div>
-                <div class="item"><span class="price">250</span><i class="dots"></i><span class="name">آیس موکا</span></div>
-                <div class="item"><span class="price">270</span><i class="dots"></i><span class="name">آیس ماچا منتو</span></div>
-                <div class="item"><span class="price">280</span><i class="dots"></i><span class="name">آیس ماچا بری</span></div>
-                <div class="item"><span class="price">280</span><i class="dots"></i><span class="name">آیس ماچا وانیل</span></div>
-                <div class="item"><span class="price">240</span><i class="dots"></i><span class="name">آیس لاته فندق</span></div>
+
+              <div class="section-title">
+                COFFEE
               </div>
+
+              <div class="items">
+
+                <div class="item">
+                  <span class="price">150</span>
+                  <i class="dots"></i>
+                  <span class="name">اسپرسو</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">150</span>
+                  <i class="dots"></i>
+                  <span class="name">امریکانو</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">180</span>
+                  <i class="dots"></i>
+                  <span class="name">کاپوچینو</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">210</span>
+                  <i class="dots"></i>
+                  <span class="name">لاته</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">240</span>
+                  <i class="dots"></i>
+                  <span class="name">کارامل ماکیاتو</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">240</span>
+                  <i class="dots"></i>
+                  <span class="name">موکا</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">230</span>
+                  <i class="dots"></i>
+                  <span class="name">لاته فندق</span>
+                </div>
+
+              </div>
+
             </section>
+
+
+            <section class="section">
+
+              <div class="section-title">
+                ICE COFFEE
+              </div>
+
+              <div class="items">
+
+                <div class="item">
+                  <span class="price">160</span>
+                  <i class="dots"></i>
+                  <span class="name">آیس امریکانو</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">220</span>
+                  <i class="dots"></i>
+                  <span class="name">آیس لاته</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">250</span>
+                  <i class="dots"></i>
+                  <span class="name">آیس کارامل</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">250</span>
+                  <i class="dots"></i>
+                  <span class="name">آیس موکا</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">270</span>
+                  <i class="dots"></i>
+                  <span class="name">آیس ماچا منتو</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">280</span>
+                  <i class="dots"></i>
+                  <span class="name">آیس ماچا بری</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">280</span>
+                  <i class="dots"></i>
+                  <span class="name">آیس ماچا وانیل</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">240</span>
+                  <i class="dots"></i>
+                  <span class="name">آیس لاته فندق</span>
+                </div>
+
+              </div>
+
+            </section>
+
           </div>
 
+
           <div class="menu-col right">
-            <section class="section">
-              <div class="section-title">SPECIAL</div>
-              <div class="items">
-                <div class="item"><span class="price">230</span><i class="dots"></i><span class="name">ماچا</span></div>
-                <div class="item"><span class="price">260</span><i class="dots"></i><span class="name">ماچا منتو</span></div>
-                <div class="item"><span class="price">270</span><i class="dots"></i><span class="name">ماچا بری</span></div>
-                <div class="item"><span class="price">270</span><i class="dots"></i><span class="name">ماچا وانیل</span></div>
-                <div class="item"><span class="price">190</span><i class="dots"></i><span class="name">هات چاکلت</span></div>
-                <div class="item"><span class="price">180</span><i class="dots"></i><span class="name">وانت چاکلت</span></div>
-                <div class="item"><span class="price">180</span><i class="dots"></i><span class="name">پینک چاکلت</span></div>
-              </div>
-            </section>
 
             <section class="section">
-              <div class="section-title">TEA</div>
-              <div class="items">
-                <div class="item"><span class="price">60</span><i class="dots"></i><span class="name">چای ساده</span></div>
-                <div class="item"><span class="price">190</span><i class="dots"></i><span class="name">چای کرک</span></div>
-                <div class="item"><span class="price">190</span><i class="dots"></i><span class="name">چای ماسالا</span></div>
+
+              <div class="section-title">
+                SPECIAL
               </div>
+
+              <div class="items">
+
+                <div class="item">
+                  <span class="price">230</span>
+                  <i class="dots"></i>
+                  <span class="name">ماچا</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">260</span>
+                  <i class="dots"></i>
+                  <span class="name">ماچا منتو</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">270</span>
+                  <i class="dots"></i>
+                  <span class="name">ماچا بری</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">270</span>
+                  <i class="dots"></i>
+                  <span class="name">ماچا وانیل</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">190</span>
+                  <i class="dots"></i>
+                  <span class="name">هات چاکلت</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">180</span>
+                  <i class="dots"></i>
+                  <span class="name">وانت چاکلت</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">180</span>
+                  <i class="dots"></i>
+                  <span class="name">پینک چاکلت</span>
+                </div>
+
+              </div>
+
             </section>
+
+
+            <section class="section">
+
+              <div class="section-title">
+                TEA
+              </div>
+
+              <div class="items">
+
+                <div class="item">
+                  <span class="price">60</span>
+                  <i class="dots"></i>
+                  <span class="name">چای ساده</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">190</span>
+                  <i class="dots"></i>
+                  <span class="name">چای کرک</span>
+                </div>
+
+                <div class="item">
+                  <span class="price">190</span>
+                  <i class="dots"></i>
+                  <span class="name">چای ماسالا</span>
+                </div>
+
+              </div>
+
+            </section>
+
           </div>
 
         </div>
 
       </div>
+
     </div>
+
   </section>
 
-  <section id="fastfood" class="screen" aria-label="منوی فست فود">
+
+  <section
+    id="fastfood"
+    class="screen"
+    aria-label="منوی فست فود"
+  >
+
     <div class="page">
+
       <div class="corner tl"><i></i></div>
       <div class="corner tr"><i></i></div>
       <div class="corner bl"><i></i></div>
       <div class="corner br"><i></i></div>
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#173d31">
-        <div style="font-family:Georgia,serif;font-size:clamp(22px,6vw,46px);letter-spacing:.18em;direction:ltr">FAST FOOD</div>
-        <div style="margin-top:8px;font-size:clamp(13px,2.6vw,20px)">منوی فست فود</div>
+
+      <div
+        style="
+          position:absolute;
+          inset:0;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          flex-direction:column;
+          color:#173d31
+        "
+      >
+
+        <div
+          style="
+            font-family:Georgia,serif;
+            font-size:clamp(22px,6vw,46px);
+            letter-spacing:.18em;
+            direction:ltr
+          "
+        >
+          FAST FOOD
+        </div>
+
+        <div
+          style="
+            margin-top:8px;
+            font-size:clamp(13px,2.6vw,20px)
+          "
+        >
+          منوی فست فود
+        </div>
+
       </div>
+
     </div>
+
   </section>
 
 </div>
 
+
 <script>
 (function(){
-  const fallbackImages = document.querySelectorAll('.asset-image');
+
+  const fallbackImages =
+    document.querySelectorAll('.asset-image');
 
   fallbackImages.forEach(img=>{
-    const sources = (img.dataset.assets || '').split('|').filter(Boolean);
+
+    const sources =
+      (img.dataset.assets || '')
+      .split('|')
+      .filter(Boolean);
+
     let index = 0;
 
     function tryNext(){
+
       if(index >= sources.length){
-        img.style.display='none';
+        img.style.display = 'none';
         return;
       }
+
       img.src = sources[index++];
     }
 
     img.addEventListener('error', tryNext);
+
     tryNext();
+
   });
 
+
   function showScreen(id){
-    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-    const target=document.getElementById(id);
-    if(target) target.classList.add('active');
+
+    document
+      .querySelectorAll('.screen')
+      .forEach(screen=>{
+        screen.classList.remove('active');
+      });
+
+    const target =
+      document.getElementById(id);
+
+    if(target){
+      target.classList.add('active');
+    }
+
     window.scrollTo(0,0);
   }
 
+
   window.openScreen = function(id){
+
     showScreen(id);
-    const state = {screen:id};
+
+    const state = {
+      screen:id
+    };
+
     if(id === 'cover'){
-      history.replaceState(state, '', window.location.href);
+
+      history.replaceState(
+        state,
+        '',
+        window.location.href
+      );
+
     }else{
-      history.pushState(state, '', window.location.href);
+
+      history.pushState(
+        state,
+        '',
+        window.location.href
+      );
+
     }
+
   };
 
-  // The phone's native Back button navigates from Cafe/Fast Food to the cover.
-  history.replaceState({screen:'cover'}, '', window.location.href);
-  window.addEventListener('popstate', function(){
-    showScreen('cover');
-    history.replaceState({screen:'cover'}, '', window.location.href);
-  });
 
-  // Keep the digital menu locked to the viewport.
-  document.addEventListener('touchmove', e=>{
-    if(e.target.closest('.screen')) e.preventDefault();
-  }, {passive:false});
+  history.replaceState(
+    {screen:'cover'},
+    '',
+    window.location.href
+  );
+
+
+  window.addEventListener(
+    'popstate',
+    function(){
+
+      showScreen('cover');
+
+      history.replaceState(
+        {screen:'cover'},
+        '',
+        window.location.href
+      );
+
+    }
+  );
+
 })();
 </script>
+
 </body>
 </html>
