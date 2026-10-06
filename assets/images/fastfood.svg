@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="#1d2d24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- نان بالای برگر -->
+  <path d="M 20 42 A 30 22 0 0 1 80 42 Z" fill="none" />
+  <!-- دانه کنجد -->
+  <path d="M 40 28 A 1 1 0 0 1 42 28" stroke-width="3" />
+  <path d="M 58 30 A 1 1 0 0 1 60 30" stroke-width="3" />
+  <path d="M 48 35 A 1 1 0 0 1 50 35" stroke-width="3" />
+  <!-- کاهو / پنیر موج‌دار -->
+  <path d="M 18 48 Q 23 44 28 48 T 38 48 T 48 48 T 58 48 T 68 48 T 78 48 T 82 48" />
+  <!-- همبرگر -->
+  <rect x="18" y="52" width="64" height="8" rx="4" fill="none" />
+  <!-- گوجه / لایه بعدی -->
+  <line x1="22" y1="64" x2="78" y2="64" />
+  <!-- نان پایین برگر -->
+  <path d="M 20 68 H 80 C 80 74 75 78 70 78 H 30 C 25 78 20 74 20 68 Z" />
+</svg>
