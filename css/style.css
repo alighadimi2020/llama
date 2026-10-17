@@ -1,0 +1,91 @@
+/* LLAMA CAFE digital menu: view-only, mobile-first, RTL */
+@font-face{font-family:Peyda;src:url("../assets/fonts/PEYDA-REGULAR.TTF") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:Peyda;src:url("../assets/fonts/PEYDA-MEDIUM.TTF") format("truetype");font-weight:500;font-display:swap}
+@font-face{font-family:Peyda;src:url("../assets/fonts/PEYDA-SEMIBOLD.TTF") format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:Peyda;src:url("../assets/fonts/PEYDA-BOLD.TTF") format("truetype");font-weight:700;font-display:swap}
+
+:root{
+  --green:#10382B;--deep:#09271E;--ivory:#F5F0E6;--cream:#EAE1D1;--gold:#B89455;
+  --ink:#17352A;--muted:#746F63;--line:#D8CEBA;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ivory);color:var(--ink);font:400 1rem/1.6 Peyda,var(--sans)}
+body.is-home{background:var(--deep)}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,p,ul{margin:0;padding:0}
+#app{max-width:480px;min-height:100dvh;margin:0 auto;background:var(--ivory)}
+.is-home #app{background:var(--deep)}
+
+/* photo frames: green fallback, collapse if the file is missing */
+.ph{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--green),var(--deep))}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.banner.is-empty,.thumb.is-empty{display:none}
+
+.rule{display:block;width:84px;height:9px;margin:10px 0 0;position:relative}
+.rule:before{content:"";position:absolute;inset:4px 0 auto;height:1px;background:var(--gold)}
+.rule:after{content:"";position:absolute;left:50%;top:1px;width:7px;height:7px;background:var(--gold);transform:translateX(-50%) rotate(45deg);outline:3px solid var(--ivory)}
+.home .rule:after{outline-color:var(--deep)}
+
+/* opening screen */
+.home{position:relative;display:flex;flex-direction:column;min-height:100dvh;padding:max(28px,env(safe-area-inset-top)) 20px max(24px,env(safe-area-inset-bottom));overflow:hidden}
+.home__leaf{position:absolute;left:-14px;bottom:-12px;width:120px;opacity:.28;pointer-events:none}
+.home__brand{display:flex;flex-direction:column;align-items:center;padding:6px 0 26px}
+.home__logo{display:block;width:min(46vw,176px);height:auto}
+.home .rule{margin:16px auto 0}
+.home__cards{position:relative;flex:1;display:grid;grid-template-rows:1fr 1fr;gap:14px}
+.entry{display:flex;align-items:flex-end;min-height:150px;border:1px solid var(--gold);border-radius:18px;color:var(--ivory)}
+.entry:after,.tile:after,.banner:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(9,39,30,.82),rgba(9,39,30,.05) 62%)}
+.entry__txt{position:relative;z-index:1;display:flex;flex-direction:column;gap:2px;padding:16px 18px}
+.entry__en{font:600 1.7rem/1.1 var(--serif);letter-spacing:.14em;direction:ltr;text-align:right}
+.entry__fa{font-weight:500;font-size:1.05rem;color:var(--cream)}
+
+/* top bar + chips */
+.bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:calc(8px + env(safe-area-inset-top)) 10px 8px;background:var(--green);color:var(--ivory);border-bottom:1px solid var(--gold)}
+.bar__btn{display:grid;place-items:center;width:44px;height:44px;border-radius:50%}
+.bar__title{font-weight:500;font-size:.95rem}
+.bar__title b{font:600 1.1rem var(--serif);letter-spacing:.12em;margin-inline-start:6px}
+.chips{position:sticky;top:calc(61px + env(safe-area-inset-top));z-index:4;display:flex;gap:8px;overflow-x:auto;padding:10px 16px;background:var(--ivory);border-bottom:1px solid var(--line);scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid var(--line);border-radius:999px;font-weight:500;font-size:.95rem;white-space:nowrap}
+.chip.is-on{background:var(--green);border-color:var(--green);color:var(--ivory)}
+
+/* headings */
+.pad{padding:22px 20px 40px}
+.head{margin-bottom:8px}
+.head__en{font:600 2.1rem/1.1 var(--serif);letter-spacing:.06em;direction:ltr;text-align:right}
+.head__fa{margin-top:2px;color:var(--muted);font-size:1.05rem}
+
+/* cafe category tiles */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.tile{display:flex;align-items:flex-end;aspect-ratio:4/5;border:1px solid var(--gold);border-radius:16px;color:var(--ivory)}
+.tile__txt{position:relative;z-index:1;display:flex;flex-direction:column;padding:12px 14px 14px}
+.tile__en{font:600 1.15rem/1.15 var(--serif);letter-spacing:.1em;direction:ltr;text-align:right}
+.tile__fa{font-weight:500;font-size:.95rem;color:var(--cream)}
+.tile__go{position:absolute;z-index:1;top:10px;left:10px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:rgba(245,240,230,.9);color:var(--green)}
+.tile__go svg{width:16px;height:16px;transform:scaleX(-1)}
+
+/* category banner */
+.banner{aspect-ratio:16/7;border-bottom:1px solid var(--gold)}
+.banner:after{background:linear-gradient(to top,rgba(245,240,230,.0),rgba(9,39,30,.12))}
+
+/* product list: text-first, no ordering controls */
+.items{list-style:none;margin-top:6px}
+.item{display:flex;align-items:baseline;gap:10px;padding:15px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.item__txt{display:flex;flex-direction:column;min-width:0}
+.item__fa{font-weight:500;font-size:1.1rem;line-height:1.5}
+.item__en{font:500 .95rem/1.3 var(--serif);letter-spacing:.04em;color:var(--muted);direction:ltr;text-align:right}
+.item__desc{margin-top:2px;font-size:.88rem;color:var(--muted);line-height:1.6}
+.item__dots{flex:1;min-width:16px;border-bottom:1px dotted var(--gold);opacity:.7;transform:translateY(-5px)}
+.item__price{flex:none;font-weight:600;font-size:1.3rem;color:var(--green);font-variant-numeric:tabular-nums}
+.thumb{flex:none;align-self:center;width:64px;height:64px;border-radius:10px}
+.item:has(.thumb){align-items:center}
+.empty{margin-top:24px;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--cream);color:var(--muted);text-align:center}
+
+@media (min-width:481px){#app{box-shadow:0 0 0 1px var(--line)}body{background:var(--cream)}body.is-home{background:var(--deep)}}
+@media (max-width:340px){.pad{padding-inline:16px}.head__en{font-size:1.8rem}.item__price{font-size:1.2rem}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
