@@ -12,9 +12,414 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<main id="app"></main>
-<noscript><p style="padding:24px;text-align:center">برای مشاهده منو، جاوااسکریپت را فعال کنید.</p></noscript>
-<script src="js/menu-data.js"></script>
+<!--
+  راهنمای ویرایش:
+  - همه متن‌ها، قیمت‌ها و آیتم‌ها همین‌جا در HTML هستند و مستقیم قابل ویرایش‌اند.
+  - هر صفحه یک بخش <section class="view" id="..."> است. جاوااسکریپت فقط بخش مربوط به آدرس را نشان می‌دهد.
+  - برای افزودن آیتم: یک <li class="item">...</li> را کپی و ویرایش کنید.
+  - عکس پس‌زمینه‌ی هر صفحه در همان <section> با style="--bg:url('...')" تعیین می‌شود.
+  - قیمت‌ها به صورت متن نوشته شده‌اند (مثلاً ۱۵۰).
+-->
+<main id="app">
+
+  <!-- ===================== صفحه اصلی ===================== -->
+  <section class="view" id="home" data-home data-title="LLAMA CAFE | منو">
+    <div class="home">
+      <svg class="home__leaf" viewBox="0 0 120 160" aria-hidden="true"><g fill="none" stroke="#B89455" stroke-width="1.2" stroke-linecap="round"><path d="M60 158C60 110 62 60 90 6"/><path d="M61 120c-22-4-34-18-36-34 20 2 34 14 36 34zM63 92c20-6 30-20 30-36-20 4-30 16-30 36zM68 62c-16-8-24-20-24-34 16 6 24 18 24 34z"/></g></svg>
+      <header class="home__brand"><img class="home__logo" src="./logo.png" alt="LLAMA CAFE"></header>
+      <nav class="home__cards" aria-label="منو">
+        <a class="entry ph" href="#/fast-food">
+          <img src="assets/images/fast-food-category.jpg" alt="فست فود — LLAMA CAFE" fetchpriority="high">
+          <span class="entry__txt"><span class="entry__en">FAST FOOD</span><span class="entry__fa">فست فود</span></span>
+        </a>
+        <a class="entry ph" href="#/cafe">
+          <img src="assets/images/cafe-hero.jpg" alt="کافه — LLAMA CAFE" fetchpriority="high">
+          <span class="entry__txt"><span class="entry__en">CAFE</span><span class="entry__fa">کافه</span></span>
+        </a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===================== منوی کافه (انتخاب دسته) ===================== -->
+  <section class="view" id="cafe" data-title="کافه | LLAMA CAFE" style="--bg:url('assets/images/cafe-hero.jpg')">
+    <header class="bar">
+      <a class="bar__btn" href="#/" aria-label="بازگشت"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+      <span class="bar__title"><b>CAFE</b></span>
+      <a class="bar__btn" href="#/" aria-label="منوی اصلی"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7M6 10v10h12V10"/></svg></a>
+    </header>
+    <section class="pad">
+      <div class="head head--center"><h1 class="head__en">Cafe Menu</h1><p class="head__fa">یک دسته را انتخاب کنید</p><i class="rule"></i></div>
+      <div class="tiles">
+        <a class="tile ph" href="#/cafe/coffee">
+          <img src="assets/images/coffee-category.jpg" alt="قهوه — LLAMA CAFE" loading="lazy">
+          <span class="tile__txt"><span class="tile__en">COFFEE</span><span class="tile__fa">قهوه</span></span>
+          <span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+        <a class="tile ph" href="#/cafe/ice-coffee">
+          <img src="assets/images/iced-coffee-category.jpg" alt="قهوه سرد — LLAMA CAFE" loading="lazy">
+          <span class="tile__txt"><span class="tile__en">ICE COFFEE</span><span class="tile__fa">قهوه سرد</span></span>
+          <span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+        <a class="tile ph" href="#/cafe/special">
+          <img src="assets/images/special-drinks-category.jpg" alt="نوشیدنی‌های ویژه — LLAMA CAFE" loading="lazy">
+          <span class="tile__txt"><span class="tile__en">SPECIAL</span><span class="tile__fa">نوشیدنی‌های ویژه</span></span>
+          <span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+        <a class="tile ph" href="#/cafe/tea">
+          <img src="assets/images/tea-category.jpg" alt="چای — LLAMA CAFE" loading="lazy">
+          <span class="tile__txt"><span class="tile__en">TEA</span><span class="tile__fa">چای</span></span>
+          <span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <!-- ===================== فست فود ===================== -->
+  <section class="view" id="fast-food" data-title="فست فود | LLAMA CAFE" style="--bg:url('assets/images/fast-food-category.jpg')">
+    <header class="bar">
+      <a class="bar__btn" href="#/" aria-label="بازگشت"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+      <span class="bar__title"><b>FAST FOOD</b></span>
+      <a class="bar__btn" href="#/" aria-label="منوی اصلی"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7M6 10v10h12V10"/></svg></a>
+    </header>
+    <section class="pad">
+      <div class="head head--center head--fa"><h1 class="head__fa-title">فست فود</h1><i class="rule"></i></div>
+      <!-- وقتی آیتم اضافه کردید، پیام زیر را پاک کنید و از <ul class="items"> مثل بخش‌های کافه استفاده کنید -->
+      <p class="empty">منوی این بخش به‌زودی اضافه می‌شود.</p>
+    </section>
+  </section>
+
+  <!-- ===================== کافه: قهوه ===================== -->
+  <section class="view" id="cafe/coffee" data-title="قهوه | LLAMA CAFE" style="--bg:url('assets/images/coffee-category.jpg')">
+    <header class="bar">
+      <a class="bar__btn" href="#/cafe" aria-label="بازگشت"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+      <span class="bar__title"><b>COFFEE</b></span>
+      <a class="bar__btn" href="#/" aria-label="منوی اصلی"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7M6 10v10h12V10"/></svg></a>
+    </header>
+    <nav class="chips" aria-label="دسته‌ها">
+      <a class="chip is-on" href="#/cafe/coffee" aria-current="page">قهوه</a>
+      <a class="chip" href="#/cafe/ice-coffee">قهوه سرد</a>
+      <a class="chip" href="#/cafe/special">نوشیدنی‌های ویژه</a>
+      <a class="chip" href="#/cafe/tea">چای</a>
+    </nav>
+    <section class="pad">
+      <div class="head head--center head--fa"><h1 class="head__fa-title">قهوه</h1><i class="rule"></i></div>
+      <ul class="items">
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/espresso.jpg" alt="اسپرسو" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">اسپرسو</span>
+          <span class="item__en">Espresso</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۱۵۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/americano.jpg" alt="امریکانو" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">امریکانو</span>
+          <span class="item__en">Americano</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۱۵۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/cappuccino.jpg" alt="کاپوچینو" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">کاپوچینو</span>
+          <span class="item__en">Cappuccino</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۱۸۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/latte.jpg" alt="لاته" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">لاته</span>
+          <span class="item__en">Latte</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۱۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/caramel-macchiato.jpg" alt="کارامل ماکیاتو" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">کارامل ماکیاتو</span>
+          <span class="item__en">Caramel Macchiato</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۴۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/mocha.jpg" alt="موکا" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">موکا</span>
+          <span class="item__en">Mocha</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۴۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/hazelnut-latte.jpg" alt="لاته فندق" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">لاته فندق</span>
+          <span class="item__en">Hazelnut Latte</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۳۰</span>
+        </li>
+      </ul>
+    </section>
+  </section>
+
+  <!-- ===================== کافه: قهوه سرد ===================== -->
+  <section class="view" id="cafe/ice-coffee" data-title="قهوه سرد | LLAMA CAFE" style="--bg:url('assets/images/iced-coffee-category.jpg')">
+    <header class="bar">
+      <a class="bar__btn" href="#/cafe" aria-label="بازگشت"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+      <span class="bar__title"><b>ICE COFFEE</b></span>
+      <a class="bar__btn" href="#/" aria-label="منوی اصلی"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7M6 10v10h12V10"/></svg></a>
+    </header>
+    <nav class="chips" aria-label="دسته‌ها">
+      <a class="chip" href="#/cafe/coffee">قهوه</a>
+      <a class="chip is-on" href="#/cafe/ice-coffee" aria-current="page">قهوه سرد</a>
+      <a class="chip" href="#/cafe/special">نوشیدنی‌های ویژه</a>
+      <a class="chip" href="#/cafe/tea">چای</a>
+    </nav>
+    <section class="pad">
+      <div class="head head--center head--fa"><h1 class="head__fa-title">قهوه سرد</h1><i class="rule"></i></div>
+      <ul class="items">
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/iced-americano.jpg" alt="آیس امریکانو" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">آیس امریکانو</span>
+          <span class="item__en">Iced Americano</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۱۶۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/iced-latte.jpg" alt="آیس لاته" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">آیس لاته</span>
+          <span class="item__en">Iced Latte</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۲۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/iced-caramel-macchiato.jpg" alt="آیس کارامل" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">آیس کارامل</span>
+          <span class="item__en">Iced Caramel</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۵۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/iced-mocha.jpg" alt="آیس موکا" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">آیس موکا</span>
+          <span class="item__en">Iced Mocha</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۵۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/iced-matcha-mento.jpg" alt="آیس ماچا منتو" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">آیس ماچا منگو</span>
+          <span class="item__en">Iced Matcha Mango</span>
+
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۷۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/iced-matcha-berry.jpg" alt="آیس ماچا بری" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">آیس ماچا بری</span>
+          <span class="item__en">Iced Matcha Berry</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۸۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/iced-matcha-vanilla.jpg" alt="آیس ماچا وانیل" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">آیس ماچا وانیل</span>
+          <span class="item__en">Iced Matcha Vanilla</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۸۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/iced-hazelnut-latte.jpg" alt="آیس لاته فندق" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">آیس لاته فندق</span>
+          <span class="item__en">Iced Hazelnut Latte</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۴۰</span>
+        </li>
+      </ul>
+    </section>
+  </section>
+
+  <!-- ===================== کافه: نوشیدنی‌های ویژه ===================== -->
+  <section class="view" id="cafe/special" data-title="نوشیدنی‌های ویژه | LLAMA CAFE" style="--bg:url('assets/images/special-drinks-category.jpg')">
+    <header class="bar">
+      <a class="bar__btn" href="#/cafe" aria-label="بازگشت"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+      <span class="bar__title"><b>SPECIAL</b></span>
+      <a class="bar__btn" href="#/" aria-label="منوی اصلی"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7M6 10v10h12V10"/></svg></a>
+    </header>
+    <nav class="chips" aria-label="دسته‌ها">
+      <a class="chip" href="#/cafe/coffee">قهوه</a>
+      <a class="chip" href="#/cafe/ice-coffee">قهوه سرد</a>
+      <a class="chip is-on" href="#/cafe/special" aria-current="page">نوشیدنی‌های ویژه</a>
+      <a class="chip" href="#/cafe/tea">چای</a>
+    </nav>
+    <section class="pad">
+      <div class="head head--center head--fa"><h1 class="head__fa-title">نوشیدنی‌های ویژه</h1><i class="rule"></i></div>
+      <ul class="items">
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/matcha-latte.jpg" alt="ماچا" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">ماچا</span>
+          <span class="item__en">Matcha</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۳۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/matcha-mento.jpg" alt="ماچا منتو" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">ماچا منگو</span>
+          <span class="item__en">Matcha mango</span>
+
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۶۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/matcha-berry.jpg" alt="ماچا بری" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">ماچا بری</span>
+          <span class="item__en">Matcha Berry</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۷۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/matcha-vanilla.jpg" alt="ماچا وانیل" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">ماچا وانیل</span>
+          <span class="item__en">Matcha Vanilla</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۲۷۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/hot-chocolate.jpg" alt="هات چاکلت" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">هات چاکلت</span>
+          <span class="item__en">Hot Chocolate</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۱۹۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/white-chocolate.jpg" alt="وانت چاکلت" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">وایت چاکلت</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۱۸۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/pink-chocolate.jpg" alt="پینک چاکلت" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">پینک چاکلت</span>
+          <span class="item__en">Pink Chocolate</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۱۸۰</span>
+        </li>
+      </ul>
+    </section>
+  </section>
+
+  <!-- ===================== کافه: چای ===================== -->
+  <section class="view" id="cafe/tea" data-title="چای | LLAMA CAFE" style="--bg:url('assets/images/tea-category.jpg')">
+    <header class="bar">
+      <a class="bar__btn" href="#/cafe" aria-label="بازگشت"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+      <span class="bar__title"><b>TEA</b></span>
+      <a class="bar__btn" href="#/" aria-label="منوی اصلی"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7M6 10v10h12V10"/></svg></a>
+    </header>
+    <nav class="chips" aria-label="دسته‌ها">
+      <a class="chip" href="#/cafe/coffee">قهوه</a>
+      <a class="chip" href="#/cafe/ice-coffee">قهوه سرد</a>
+      <a class="chip" href="#/cafe/special">نوشیدنی‌های ویژه</a>
+      <a class="chip is-on" href="#/cafe/tea" aria-current="page">چای</a>
+    </nav>
+    <section class="pad">
+      <div class="head head--center head--fa"><h1 class="head__fa-title">چای</h1><i class="rule"></i></div>
+      <ul class="items">
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/black-tea.jpg" alt="چای ساده" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">چای ساده</span>
+          <span class="item__en">Tea</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۶۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/karak-tea.jpg" alt="چای کرک" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">چای کرک</span>
+          <span class="item__en">Karak Tea</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۱۹۰</span>
+        </li>
+        <li class="item">
+          <!-- عکس محصول (اختیاری): خط زیر را از حالت کامنت دربیاورید
+          <span class="thumb ph"><img src="assets/images/chai-masala.jpg" alt="چای ماسالا" loading="lazy"></span> -->
+          <div class="item__txt">
+          <span class="item__fa">چای ماسالا</span>
+          <span class="item__en">Masala Tea</span>
+          <!-- توضیحات (اختیاری): <span class="item__desc">متن توضیح</span> -->
+          </div>
+          <span class="item__dots"></span><span class="item__price">۱۹۰</span>
+        </li>
+      </ul>
+    </section>
+  </section>
+
+</main>
 <script src="js/app.js"></script>
 </body>
 </html>
